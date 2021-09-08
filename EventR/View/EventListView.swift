@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  EventListView.swift
 //  EventR
 //
 //  Created by Karthick Selvaraj on 08/09/21.
@@ -7,15 +7,16 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct EventListView: View {
+    
     var body: some View {
         Text("Hello, world!")
             .padding()
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct EventListView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        EventListView()
     }
 }

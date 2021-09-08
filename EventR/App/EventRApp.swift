@@ -11,7 +11,7 @@ import SwiftUI
 struct EventRApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            EventListView()
         }
     }
 }
