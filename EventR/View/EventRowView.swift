@@ -8,13 +8,25 @@
 import SwiftUI
 
 struct EventRowView: View {
+    
+    var event: Event
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading) {
+            Text(event.title)
+                .bold()
+            Text(event.venue.displayLocation)
+                .font(.footnote)
+                .foregroundColor(.secondary)
+            Text(event.datetimeUTC)
+                .font(.footnote)
+                .foregroundColor(.secondary)
+        }
     }
 }
 
 struct EventRowView_Previews: PreviewProvider {
     static var previews: some View {
-        EventRowView()
+        EventRowView(event: Helper.fetchSampleEvents().events.first!)
     }
 }

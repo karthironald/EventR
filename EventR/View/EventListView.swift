@@ -9,9 +9,18 @@ import SwiftUI
 
 struct EventListView: View {
     
+    @StateObject var viewModel = EventListViewModel()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            List(viewModel.eventsResponse?.events ?? []) { event in
+                EventRowView(event: event)
+            }
+            .onAppear {
+                viewModel.fetchEvents()
+            }
+            .navigationTitle("Events")
+        }
     }
 }
 

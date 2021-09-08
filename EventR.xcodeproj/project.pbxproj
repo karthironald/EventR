@@ -7,16 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		770E8D8226E9389A0055D91F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770E8D8126E938990055D91F /* Helper.swift */; };
 		77ECAC0326E92A1F00A83B6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77ECAC0226E92A1F00A83B6D /* Assets.xcassets */; };
 		77ECAC0626E92A1F00A83B6D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77ECAC0526E92A1F00A83B6D /* Preview Assets.xcassets */; };
 		77ECAC1426E92B0E00A83B6D /* EventRApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ECAC1026E92B0E00A83B6D /* EventRApp.swift */; };
 		77ECAC1526E92B0E00A83B6D /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ECAC1226E92B0E00A83B6D /* EventListView.swift */; };
 		77ECAC1726E92BA000A83B6D /* EventRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ECAC1626E92BA000A83B6D /* EventRowView.swift */; };
-		77ECAC1926E92BC000A83B6D /* EventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ECAC1826E92BC000A83B6D /* EventListViewModel.swift */; };
-		77ECAC1B26E92BD100A83B6D /* EventRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ECAC1A26E92BD100A83B6D /* EventRowViewModel.swift */; };
+		77ECAC1D26E92E0500A83B6D /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ECAC1C26E92E0500A83B6D /* EventModel.swift */; };
+		77ECAC2026E92E1A00A83B6D /* EventRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ECAC1E26E92E1A00A83B6D /* EventRowViewModel.swift */; };
+		77ECAC2126E92E1A00A83B6D /* EventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ECAC1F26E92E1A00A83B6D /* EventListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		770E8D8126E938990055D91F /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		77ECABFB26E92A1D00A83B6D /* EventR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77ECAC0226E92A1F00A83B6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77ECAC0526E92A1F00A83B6D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -24,8 +27,9 @@
 		77ECAC1026E92B0E00A83B6D /* EventRApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRApp.swift; sourceTree = "<group>"; };
 		77ECAC1226E92B0E00A83B6D /* EventListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
 		77ECAC1626E92BA000A83B6D /* EventRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRowView.swift; sourceTree = "<group>"; };
-		77ECAC1826E92BC000A83B6D /* EventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventListViewModel.swift; path = EventR/ViewModel/EventListViewModel.swift; sourceTree = SOURCE_ROOT; };
-		77ECAC1A26E92BD100A83B6D /* EventRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventRowViewModel.swift; path = EventR/ViewModel/EventRowViewModel.swift; sourceTree = SOURCE_ROOT; };
+		77ECAC1C26E92E0500A83B6D /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		77ECAC1E26E92E1A00A83B6D /* EventRowViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRowViewModel.swift; sourceTree = "<group>"; };
+		77ECAC1F26E92E1A00A83B6D /* EventListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,8 @@
 		77ECAC0D26E92B0E00A83B6D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				77ECAC1F26E92E1A00A83B6D /* EventListViewModel.swift */,
+				77ECAC1E26E92E1A00A83B6D /* EventRowViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -88,8 +94,7 @@
 		77ECAC0E26E92B0E00A83B6D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				77ECAC1826E92BC000A83B6D /* EventListViewModel.swift */,
-				77ECAC1A26E92BD100A83B6D /* EventRowViewModel.swift */,
+				77ECAC1C26E92E0500A83B6D /* EventModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -114,6 +119,7 @@
 		77ECAC1326E92B0E00A83B6D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				770E8D8126E938990055D91F /* Helper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -187,11 +193,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77ECAC1B26E92BD100A83B6D /* EventRowViewModel.swift in Sources */,
 				77ECAC1726E92BA000A83B6D /* EventRowView.swift in Sources */,
-				77ECAC1926E92BC000A83B6D /* EventListViewModel.swift in Sources */,
+				770E8D8226E9389A0055D91F /* Helper.swift in Sources */,
 				77ECAC1526E92B0E00A83B6D /* EventListView.swift in Sources */,
+				77ECAC1D26E92E0500A83B6D /* EventModel.swift in Sources */,
+				77ECAC2126E92E1A00A83B6D /* EventListViewModel.swift in Sources */,
 				77ECAC1426E92B0E00A83B6D /* EventRApp.swift in Sources */,
+				77ECAC2026E92E1A00A83B6D /* EventRowViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
