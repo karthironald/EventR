@@ -10,35 +10,46 @@ import SwiftUI
 struct EventListView: View {
     
     @StateObject var viewModel = EventListViewModel()
+    @State var searchText = ""
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(viewModel.events) { event in
-                    ZStack(alignment: .leading) {
-                        NavigationLink(
-                            destination: EventDetailView(event: event)) {
-                            EmptyView()
-                        }
-                        .opacity(0)
-                        
-                        EventRowView(event: event)
-                    }
-                }
-                
-                if !viewModel.isAllEventsFetched {
-                    HStack(spacing: 10) {
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: .gray))
-                        Text("Loading...")
-                            .foregroundColor(.secondary)
-                    }
-                    .onAppear(perform: {
-                        viewModel.fetchEvents()
+            VStack {
+                SearchView(searchText: $searchText)
+                    .onChange(of: searchText, perform: { value in
+                        viewModel.searchText = searchText
                     })
+                List {
+                    ForEach(viewModel.events) { event in
+                        ZStack(alignment: .leading) {
+                            NavigationLink(
+                                destination: EventDetailView(event: event)) {
+                                EmptyView()
+                            }
+                            .opacity(0)
+                            
+                            EventRowView(event: event)
+                        }
+                    }
+                    
+                    if !viewModel.isAllEventsFetched && viewModel.events.count > 0 {
+                        HStack(spacing: 10) {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+                            Text("Loading...")
+                                .foregroundColor(.secondary)
+                        }
+                        
+                        .padding()
+                        .onAppear(perform: {
+                            viewModel.fetchEvents(paginating: true, shouldReset: false)
+                        })
+                    }
                 }
+                .listStyle(PlainListStyle())
+                .resignKeyboardOnDragGesture()
             }
-            .navigationTitle("Events")
+            .padding(0)
         }
         .onAppear(perform: {
             UITableView.appearance().separatorStyle = .none
