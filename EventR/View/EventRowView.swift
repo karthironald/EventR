@@ -14,7 +14,10 @@ struct EventRowView: View {
     var body: some View {
         HStack {
             AsyncImage(url: URL(string: event.performers.first?.images.huge ?? "")!) {
-                Text("Loading")
+                RoundedRectangle(cornerRadius: 5)
+                    .background(Color.secondary)
+                    .opacity(0.1)
+                    .redacted(reason: .placeholder)
             } image: {
                 Image(uiImage: $0)
                     .resizable()
@@ -27,7 +30,7 @@ struct EventRowView: View {
                 Text(event.venue.displayLocation)
                     .font(.footnote)
                     .foregroundColor(.secondary)
-                Text(event.datetimeUTC)
+                Text(Helper.format(dateString: event.datetimeLocal) ?? "-")
                     .font(.footnote)
                     .foregroundColor(.secondary)
             }

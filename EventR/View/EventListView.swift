@@ -15,7 +15,15 @@ struct EventListView: View {
         NavigationView {
             List {
                 ForEach(viewModel.events) { event in
-                    EventRowView(event: event)
+                    ZStack(alignment: .leading) {
+                        NavigationLink(
+                            destination: EventDetailView(event: event)) {
+                            EmptyView()
+                        }
+                        .opacity(0)
+                        
+                        EventRowView(event: event)
+                    }
                 }
                 
                 if !viewModel.isAllEventsFetched {

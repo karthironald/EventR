@@ -33,7 +33,6 @@ class EventListViewModel: NSObject, ObservableObject, EventListViewModelProtocol
         cancellable = URLSession.shared.dataTaskPublisher(for: url)
             .tryMap { $0.data }
             .decode(type: EventResponse.self, decoder: JSONDecoder())
-            .print()
             .receive(on: RunLoop.main)
             .catch { _ in Just(EventResponse(events: [], meta: Meta(total: 0, took: 0, page: 0, perPage: 0))) }
             .sink { [weak self] in

@@ -21,4 +21,14 @@ class Helper {
         return EventResponse(events: [], meta: Meta(total: 0, took: 0, page: 0, perPage: 0))
     }
     
+    static func format(dateString: String) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        if let date = dateFormatter.date(from: dateString) {
+            dateFormatter.dateFormat = "E, dd MMM yyyy h:mm a"
+            let formatterString = dateFormatter.string(from: date)
+            return formatterString
+        }
+        return nil
+    }
 }
