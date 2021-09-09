@@ -138,6 +138,7 @@ struct Meta: Codable {
     }
 }
 
+
 let sampleJSon = """
     {
         "events": [

@@ -13,14 +13,29 @@ struct EventListView: View {
     
     var body: some View {
         NavigationView {
-            List(viewModel.eventsResponse?.events ?? []) { event in
-                EventRowView(event: event)
-            }
-            .onAppear {
-                viewModel.fetchEvents()
+            List {
+                ForEach(viewModel.events) { event in
+                    EventRowView(event: event)
+                }
+                
+                if !viewModel.isAllEventsFetched {
+                    HStack(spacing: 10) {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+                        Text("Loading...")
+                            .foregroundColor(.secondary)
+                    }
+                    .onAppear(perform: {
+                        viewModel.fetchEvents()
+                    })
+                }
             }
             .navigationTitle("Events")
         }
+        .onAppear(perform: {
+            UITableView.appearance().separatorStyle = .none
+            UITableViewCell.appearance().selectionStyle = .none
+        })
     }
 }
 
