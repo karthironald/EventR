@@ -19,6 +19,7 @@ class EventListViewModel: NSObject, ObservableObject, EventListViewModelProtocol
     
     @Published var events: [Event] = []
     @Published var searchText: String?
+    @Published var isFetching = true
     
     var isAllEventsFetched = false
     var currentPage = 0
@@ -30,7 +31,7 @@ class EventListViewModel: NSObject, ObservableObject, EventListViewModelProtocol
     override init() {
         super.init()
         $searchText
-            .debounce(for: .seconds(2), scheduler: DispatchQueue.main)
+            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 self.fetchEvents(paginating: false, shouldReset: true)
@@ -58,6 +59,7 @@ class EventListViewModel: NSObject, ObservableObject, EventListViewModelProtocol
         
         guard let url = URL(string: urlString) else { return }
         
+        isFetching = true
         URLSession.shared.dataTaskPublisher(for: url)
             .tryMap { $0.data }
             .decode(type: EventResponse.self, decoder: JSONDecoder())
@@ -65,6 +67,7 @@ class EventListViewModel: NSObject, ObservableObject, EventListViewModelProtocol
             .catch { _ in Just(EventResponse(events: [], meta: Meta(total: 0, took: 0, page: 0, perPage: 0))) }
             .sink { [weak self] in
                 guard let self = self else { return }
+                self.isFetching = false
                 if paginating && !shouldReset {
                     self.events.append(contentsOf: $0.events)
                 } else {

@@ -11,13 +11,14 @@ struct SearchView: View {
     
     @State private var showCancelButton: Bool = false
     @Binding var searchText: String
+    var isFetching: Bool
     
     var body: some View {
         HStack {
             HStack {
                 Image(systemName: "magnifyingglass")
                 
-                TextField("search", text: $searchText, onEditingChanged: { isEditing in
+                TextField("Search...", text: $searchText, onEditingChanged: { isEditing in
                     withAnimation {
                         self.showCancelButton = true
                     }
@@ -26,11 +27,19 @@ struct SearchView: View {
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
                 
-                Button(action: {
-                    self.searchText = ""
-                }) {
-                    Image(systemName: "xmark.circle.fill").opacity(searchText == "" ? 0 : 1)
+                ZStack {
+                    if isFetching {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+                    } else {
+                        Button(action: {
+                            self.searchText = ""
+                        }) {
+                            Image(systemName: "xmark.circle.fill").opacity(searchText.isEmpty ? 0 : 1)
+                        }
+                    }
                 }
+                
             }
             .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
             .foregroundColor(.secondary)
@@ -55,6 +64,6 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(searchText: .constant(""))
+        SearchView(searchText: .constant(""), isFetching: false)
     }
 }

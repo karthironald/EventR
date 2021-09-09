@@ -8,14 +8,30 @@
 import SwiftUI
 
 struct EventDetailView: View {
+    
+    @EnvironmentObject var favouriteHandler: FavouriteHandler
     var event: Event
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                Text(event.title)
-                    .font(.title)
-                    .bold()
+                HStack {
+                    Text(event.title)
+                        .font(.title2)
+                        .bold()
+                        .minimumScaleFactor(0.75)
+                    Spacer()
+                    Button(action: {
+                        favouriteHandler.toggleFav(id: event.id)
+                    }, label: {
+                        Image(systemName: favouriteHandler.isFavourite(id: event.id) ? "heart.fill" : "heart")
+                            .resizable()
+                            .frame(width: 30, height: 30, alignment: .center)
+                            .foregroundColor(.pink)
+                    })
+                    .frame(width: 50, height: 50, alignment: .center)
+                }
+                
                 AsyncImage(url: URL(string: event.performers.first?.images.huge ?? "")!) {
                     RoundedRectangle(cornerRadius: 5)
                         .background(Color.secondary)
@@ -27,8 +43,9 @@ struct EventDetailView: View {
                 }
                 .frame(height: UIScreen.main.bounds.height * 0.3, alignment: .center)
                 .clipShape(RoundedRectangle(cornerRadius: 5))
+                
                 Text(event.venue.displayLocation)
-                    .font(.title2)
+                    .font(.title3)
                 Text(Helper.format(dateString: event.datetimeLocal) ?? "-")
                     .bold()
                     .foregroundColor(.secondary)
@@ -40,10 +57,11 @@ struct EventDetailView: View {
         .padding()
         .navigationBarTitle(Text("Details"), displayMode: .inline)
     }
+    
 }
 
 struct EventDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        EventDetailView(event: Helper.fetchSampleEvents().events.first!)
+        EventDetailView(event: Helper.fetchSampleEvents().events[7])
     }
 }

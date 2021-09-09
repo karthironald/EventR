@@ -12,6 +12,7 @@ struct EventRApp: App {
     var body: some Scene {
         WindowGroup {
             EventListView()
+                .environmentObject(FavouriteHandler())
         }
         
     }

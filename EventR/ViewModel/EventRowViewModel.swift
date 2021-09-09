@@ -12,5 +12,5 @@ protocol EventRowViewModelProtocol {
 }
 
 class EventRowViewModel: NSObject, EventRowViewModelProtocol {
-    // Todo
+    // Need to use this when we have more logics in event row view
 }
