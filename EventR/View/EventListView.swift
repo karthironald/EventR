@@ -29,6 +29,7 @@ struct EventListView: View {
                                 .foregroundColor(.secondary)
                         }
                     } else {
+                        #warning("Need to fix the issue in automatic deselecting the selected row in the list")
                         List {
                             ForEach(viewModel.events) { event in
                                 ZStack(alignment: .leading) {
